@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Service", "U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Storage", "UserManagement.Storage\UserManagement.Storage.csproj", "{60CC7CEA-37BC-4783-A057-C23223099003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Storage.SQL", "UserManagement.Storage.SQL\UserManagement.Storage.SQL.csproj", "{CA6EDDE5-9971-4F7F-A14B-2CF2C6C1A21D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{60CC7CEA-37BC-4783-A057-C23223099003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60CC7CEA-37BC-4783-A057-C23223099003}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60CC7CEA-37BC-4783-A057-C23223099003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA6EDDE5-9971-4F7F-A14B-2CF2C6C1A21D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA6EDDE5-9971-4F7F-A14B-2CF2C6C1A21D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA6EDDE5-9971-4F7F-A14B-2CF2C6C1A21D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA6EDDE5-9971-4F7F-A14B-2CF2C6C1A21D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UserManagement.Storage.SQL\UserManagement.Storage.SQL.csproj" />
     <ProjectReference Include="..\UserManagement.Storage\UserManagement.Storage.csproj" />
   </ItemGroup>
 
