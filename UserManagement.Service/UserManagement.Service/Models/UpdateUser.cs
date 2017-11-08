@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UserManagement.Service.Models
 {
-    public class User
+    public class UpdateUser
 	{
 		public Guid Id { get; set; }
 
@@ -22,9 +22,7 @@ namespace UserManagement.Service.Models
 		public string Zip { get; set; }
 
 		public string Country { get; set; }
-
-		public string Login { get; set; }
-
+		
 		public string Password { get; set; }
 
 		public string OldPassword { get; set; }

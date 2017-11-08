@@ -17,9 +17,17 @@ namespace UserManagement.Service
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
-    }
+		public static IWebHost BuildWebHost(string[] args) =>
+			new WebHostBuilder()
+					.UseKestrel()
+					.UseContentRoot(Directory.GetCurrentDirectory())
+					.ConfigureLogging((hostingContext, logging) =>
+					{
+						logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+						logging.AddConsole();
+						logging.AddDebug();
+					})
+					.UseStartup<Startup>()
+					.Build();
+	}
 }

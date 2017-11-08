@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using UserManagement.Service.Configuration;
 using UserManagement.Service.Exceptions;
 using UserManagement.Service.Models;
-using UserManagement.Service.Service.Contracts;
+using UserManagement.Service.Services.Contracts;
 
 namespace UserManagement.Service.Controllers
 {
@@ -31,7 +31,7 @@ namespace UserManagement.Service.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Authenticate([FromBody] User user)
+		public IActionResult Authenticate([FromBody] LoginUser user)
 		{
 			try
 			{

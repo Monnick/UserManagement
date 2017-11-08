@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using UserManagement.Service.Configuration;
 using UserManagement.Service.Exceptions;
 using UserManagement.Service.Models;
-using UserManagement.Service.Service.Contracts;
+using UserManagement.Service.Services.Contracts;
 
 namespace UserManagement.Service.Controllers
 {
@@ -86,17 +86,33 @@ namespace UserManagement.Service.Controllers
 
 		[Authorize]
 		[HttpPost]
-		public IActionResult UpdateUser([FromBody] User user)
+		public IActionResult UpdateUser([FromBody] UpdateUser user)
 		{
-			if (user == null)
-			{
-				_logger.LogWarning("Update: User object is null.");
-				return BadRequest();
-			}
-
 			try
 			{
-				_logger.LogDebug("Update user {0}", user.Login);
+				if (user == null)
+				{
+					_logger.LogWarning("Update: User object is null.");
+					return BadRequest();
+				}
+
+				Guid? userId = IsAuthorized();
+				if (!userId.HasValue || user.Id != userId.Value)
+				{
+					if(userId.HasValue)
+						_logger.LogWarning("Update: User {0} tried to change user {1}.", userId, user.Id);
+					else
+						_logger.LogWarning("Update: User {0} tried to sneak on some priviliges.", userId, user.Id);
+
+					var response = new ContentResult()
+					{
+						StatusCode = StatusCodes.Status403Forbidden,
+						Content = "Something went wrong. You are not permitted to make the change."
+					};
+					return response;
+				}
+
+				_logger.LogDebug("Update user {0}", user.Id);
 
 				return Ok(_service.Update(user));
 			}
@@ -135,5 +151,13 @@ namespace UserManagement.Service.Controllers
 				return BadRequest();
 			}
 		}
-    }
+
+		private Guid? IsAuthorized()
+		{
+			Guid result;
+			if (Guid.TryParse(User.Identity.Name, out result))
+				return result;
+			return null;
+		}
+	}
 }

@@ -6,7 +6,7 @@ using UserManagement.Service.Exceptions;
 using UserManagement.Service.Models;
 using UserManagement.Storage.Contracts;
 
-namespace UserManagement.Service.Service
+namespace UserManagement.Service.Services
 {
 	public class AuthService : Contracts.IAuthService
 	{

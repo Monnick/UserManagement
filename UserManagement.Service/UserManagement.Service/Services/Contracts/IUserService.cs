@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Service.Models;
 
-namespace UserManagement.Service.Service.Contracts
+namespace UserManagement.Service.Services.Contracts
 {
     public interface IUserService
 	{
-		User Update(User user);
+		UpdateUser Update(UpdateUser user);
 
 		User Create(User user);
 		

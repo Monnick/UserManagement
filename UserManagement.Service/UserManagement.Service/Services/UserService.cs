@@ -10,7 +10,7 @@ using UserManagement.Service.Models;
 using UserManagement.Service.Validators;
 using UserManagement.Storage.Contracts;
 
-namespace UserManagement.Service.Service
+namespace UserManagement.Service.Services
 {
     public class UserService : Contracts.IUserService
     {
@@ -50,7 +50,7 @@ namespace UserManagement.Service.Service
 			return user;
 		}
 		
-		public User Update(User user)
+		public UpdateUser Update(UpdateUser user)
 		{
 			var entity = _context.Find(user.Id);
 
@@ -60,7 +60,7 @@ namespace UserManagement.Service.Service
 			if (!string.IsNullOrEmpty(user.Password) && string.IsNullOrEmpty(user.OldPassword))
 				throw new WrongPasswordException("Old password is required");
 
-			var validator = new UserValidator();
+			var validator = new UpdateUserValidator();
 			var results = validator.Validate(user);
 
 			if (!results.IsValid)
@@ -94,7 +94,7 @@ namespace UserManagement.Service.Service
 			user.Password = string.Empty;
 			user.OldPassword = string.Empty;
 
-			return user;
+			return Converters.UserConverter.ConvertToUpdateModel(entity);
 		}
 
 		public User GetById(Guid id)

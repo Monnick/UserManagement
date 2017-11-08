@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UserManagement.Service.Service.Contracts
+namespace UserManagement.Service.Services.Contracts
 {
     public interface IAuthService
     {

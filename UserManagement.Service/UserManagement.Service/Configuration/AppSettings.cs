@@ -9,13 +9,16 @@ namespace UserManagement.Service.Configuration
 {
     public class AppSettings
 	{
-		public string Secret { get; private set; }
+		public string Secret { get; set; }
 
 		public AppSettings(string secret)
 		{
 			Secret = secret;
 		}
-		
+		public AppSettings()
+		{
+		}
+
 		internal bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
 		{
 			if (password == null) throw new ArgumentNullException("password");
