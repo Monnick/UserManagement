@@ -25,6 +25,7 @@ namespace UserManagement.Service.Controllers
 
 		public AuthenticateController(IAuthService service, AppSettings settings, ILogger<AuthenticateController> logger)
 		{
+			_settings = settings;
 			_service = service;
 			_logger = logger;
 		}
@@ -82,34 +83,6 @@ namespace UserManagement.Service.Controllers
 					Content = ex.Message
 				};
 				return response;
-			}
-			catch (Exception ex)
-			{
-				_logger.LogError(ex, "Error occured.");
-
-				return BadRequest();
-			}
-		}
-
-		[HttpGet("{login}/{secret}")]
-		public IActionResult ActivateUser(string login, string secret)
-		{
-			if(string.IsNullOrEmpty(login) || string.IsNullOrEmpty(secret))
-			{
-				_logger.LogWarning("Activate user: login or secret has been empty.");
-				return BadRequest();
-			}
-
-			try
-			{
-				_logger.LogDebug("Activate user {0}", login);
-
-				var user = _service.ActivateUser(login, secret);
-
-				if (user == null)
-					return NotFound();
-
-				return Ok(user);
 			}
 			catch (Exception ex)
 			{

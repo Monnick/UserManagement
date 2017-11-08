@@ -14,9 +14,7 @@ namespace UserManagement.Storage.Entities
 
 		[Required]
 		public string Name { get; set; }
-
-		public UserStatus Status { get; set; }
-
+		
 		public string Phone { get; set; }
 
 		[Required]
@@ -33,10 +31,7 @@ namespace UserManagement.Storage.Entities
 
 		[Required]
 		public string Login { get; set; }
-
-		[Required]
-		public string Secret { get; set; }
-
+		
 		[Required]
 		public byte[] PasswordHash { get; set; }
 

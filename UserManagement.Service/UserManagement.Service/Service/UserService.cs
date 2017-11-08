@@ -39,9 +39,7 @@ namespace UserManagement.Service.Service
 			_settings.CreatePasswordHash(user.Password, out passwordHash, out passwordSalt);
 
 			var entity = Converters.UserConverter.Convert(user);
-
-			entity.Status = Storage.Entities.UserStatus.Created;
-			entity.Secret = _settings.GetHashString(Guid.NewGuid().ToString());
+			
 			entity.PasswordHash = passwordHash;
 			entity.PasswordSalt = passwordSalt;
 
@@ -101,7 +99,7 @@ namespace UserManagement.Service.Service
 
 		public User GetById(Guid id)
 		{
-			return Converters.UserConverter.Convert(_context.Users.SingleOrDefault(u => u.Id == id && u.Status == Storage.Entities.UserStatus.Activated));
+			return Converters.UserConverter.Convert(_context.Users.SingleOrDefault(u => u.Id == id));
 		}
 	}
 }

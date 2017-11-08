@@ -24,7 +24,7 @@ namespace UserManagement.Service.Service
 			if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
 				return null;
 
-			var entity = _context.Users.SingleOrDefault(x => x.Login == login && x.Status == Storage.Entities.UserStatus.Activated);
+			var entity = _context.Users.SingleOrDefault(u => u.Login == login);
 
 			// check if username exists
 			if (entity == null)
@@ -36,24 +36,6 @@ namespace UserManagement.Service.Service
 
 			// authentication successful
 			return Converters.UserConverter.Convert(entity);
-		}
-
-		public User ActivateUser(string login, string secret)
-		{
-			if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(secret))
-				return null;
-
-			var user = _context.Users.FirstOrDefault(u => u.Login == login && u.Secret == secret && u.Status == Storage.Entities.UserStatus.Created);
-
-			if (user == null)
-				return null;
-
-			user.Status = Storage.Entities.UserStatus.Activated;
-			user.Secret = string.Empty;
-			_context.Update(user);
-			_context.SaveChanges();
-
-			return Converters.UserConverter.Convert(user);
 		}
 	}
 }
