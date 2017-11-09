@@ -31,6 +31,7 @@ namespace UserManagement.Service
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
         {
+			services.AddSingleton<Storage.Contracts.IUserContext>(new Storage.SQL.Contexts.UserContext(Configuration.GetConnectionString("db")));
 			services.AddTransient<Services.Contracts.IUserService, Services.UserService>();
 			services.AddTransient<Services.Contracts.IAuthService, Services.AuthService>();
 
