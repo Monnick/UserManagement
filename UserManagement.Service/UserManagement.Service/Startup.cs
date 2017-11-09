@@ -10,6 +10,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Logging;
 
 namespace UserManagement.Service
 {
@@ -31,6 +32,9 @@ namespace UserManagement.Service
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
         {
+			services.AddSingleton<Microsoft.ApplicationInsights.TelemetryClient>(new Microsoft.ApplicationInsights.TelemetryClient());
+			services.AddTransient<Telemetry.Contracts.ITelemetry, Telemetry.Telemetry>();
+			services.AddSingleton<ILogger, Telemetry.TelemetryLogger>();
 			services.AddSingleton<Storage.Contracts.IUserContext>(new Storage.SQL.Contexts.UserContext(Configuration.GetConnectionString("db")));
 			services.AddTransient<Services.Contracts.IUserService, Services.UserService>();
 			services.AddTransient<Services.Contracts.IAuthService, Services.AuthService>();

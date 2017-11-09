@@ -19,6 +19,7 @@ namespace UserManagement.Service
 
 		public static IWebHost BuildWebHost(string[] args) =>
 			new WebHostBuilder()
+                .UseApplicationInsights()
 					.UseKestrel()
 					.UseContentRoot(Directory.GetCurrentDirectory())
 					.ConfigureLogging((hostingContext, logging) =>

@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/a51540b3-afa5-40ac-81d5-a97a7336e767/resourcegroups/UserManagement/providers/microsoft.insights/components/UserManagement</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/a51540b3-afa5-40ac-81d5-a97a7336e767/resourceGroups/UserManagement/providers/microsoft.insights/components/UserManagement</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="7.2.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
   </ItemGroup>
@@ -17,6 +20,10 @@
   <ItemGroup>
     <ProjectReference Include="..\UserManagement.Storage.SQL\UserManagement.Storage.SQL.csproj" />
     <ProjectReference Include="..\UserManagement.Storage\UserManagement.Storage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
